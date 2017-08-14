@@ -2,9 +2,8 @@ TextAnalysis.jl
 ===============
 
 [![Build Status](https://api.travis-ci.org/johnmyleswhite/TextAnalysis.jl.svg)](https://travis-ci.org/johnmyleswhite/TextAnalysis.jl)
-[![TextAnalysis](http://pkg.julialang.org/badges/TextAnalysis_0.3.svg)](http://pkg.julialang.org/?pkg=TextAnalysis)
-[![TextAnalysis](http://pkg.julialang.org/badges/TextAnalysis_0.4.svg)](http://pkg.julialang.org/?pkg=TextAnalysis)
 [![TextAnalysis](http://pkg.julialang.org/badges/TextAnalysis_0.5.svg)](http://pkg.julialang.org/?pkg=TextAnalysis)
+[![TextAnalysis](http://pkg.julialang.org/badges/TextAnalysis_0.6.svg)](http://pkg.julialang.org/?pkg=TextAnalysis)
 
 # Preface
 
@@ -433,7 +432,14 @@ Analysis or LSA on the corpus. You can do this using the `lsa` function:
 Another way to get a handle on the semantic content of a corpus is to use
 Latent Dirichlet Allocation:
 
-    lda(crps)
+    m = DocumentTermMatrix(crps)
+    k = 2            # number of topics
+    iteration = 1000 # number of gibbs sampling iterations
+    alpha = 0.1      # hyper parameter
+    beta = 0.1       # hyber parameter
+    l = lda(m, k, iteration, alpha, beta) # l is k x word matrix.
+                                          # value is probablity of occurrence of a word in a topic.
+
 
 # Extended Usage Example
 
